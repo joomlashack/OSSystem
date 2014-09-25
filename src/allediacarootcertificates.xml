@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension version="2.5" type="plugin" group="system" method="upgrade">
+    <name>PLG_SYSTEM_ALLEDIACAROOTCERTIFICATES</name>
+    <author>Alledia</author>
+    <creationDate>September 25 2014</creationDate>
+    <copyright>Copyright (C) 2013-2014 OSTraining.com</copyright>
+    <license>http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL</license>
+    <authorEmail>hello@alledia.com</authorEmail>
+    <authorUrl>http://www.alledia.com</authorUrl>
+    <version>1.0.0</version>
+    <description>PLG_SYSTEM_ALLEDIACAROOTCERTIFICATES_DESCRIPTION</description>
+
+    <scriptfile>script.installer.php</scriptfile>
+
+    <files>
+        <folder>language</folder>
+        <folder>library</folder>
+        <folder>views</folder>
+        <filename plugin="allediacarootcertificates">allediacarootcertificates.php</filename>
+        <filename>include.php</filename>
+    </files>
+
+    <alledia>
+        <element publish="true">allediacarootcertificates</element>
+
+        <namespace>AllediaCARootCertificates</namespace>
+
+        <relatedExtensions>
+            <extension
+                type="library"
+                element="allediaframework">AllediaFramework</extension>
+        </relatedExtensions>
+    </alledia>
+
+    <updateservers>
+        <server type="extension" priority="1" name="AllediaCARootCertificates"><![CDATA[https://deploy.ostraining.com/updates/joomla/plg_system_allediacarootcertificates.xml]]></server>
+    </updateservers>
+</extension>

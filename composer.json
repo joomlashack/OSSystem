@@ -1,0 +1,24 @@
+{
+    "name"             : "alledia/allediacarootcertificates",
+    "description"      : "Alledia CA Root Certificates",
+    "minimum-stability": "stable",
+    "license"          : "GPL-2+",
+    "type"             : "joomla.plugin",
+    "extra"            : {
+        "element"        : "plg_system_allediacarootcertificates",
+        "element-short"  : "allediacarootcertificates",
+        "name"           : "AllediaCARootCertificates",
+        "folder"         : "system",
+        "client"         : "site",
+        "package-license": "free"
+    },
+    "authors"          : [
+        {
+            "name" : "Alledia",
+            "email": "hello@alledia.com"
+        }
+    ],
+    "require"          : {
+        "php"       : ">= 5.3"
+    }
+}

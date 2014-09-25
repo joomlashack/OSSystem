@@ -1,13 +1,13 @@
 {
-    "name"             : "alledia/allediacarootcertificates",
-    "description"      : "Alledia CA Root Certificates",
+    "name"             : "alledia/oscarootcertificates",
+    "description"      : "OS CA Root Certificates",
     "minimum-stability": "stable",
     "license"          : "GPL-2+",
     "type"             : "joomla.plugin",
     "extra"            : {
-        "element"        : "plg_system_allediacarootcertificates",
-        "element-short"  : "allediacarootcertificates",
-        "name"           : "AllediaCARootCertificates",
+        "element"        : "plg_system_oscarootcertificates",
+        "element-short"  : "oscarootcertificates",
+        "name"           : "OSCARootCertificates",
         "folder"         : "system",
         "client"         : "site",
         "package-license": "free"

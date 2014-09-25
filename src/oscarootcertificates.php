@@ -1,6 +1,6 @@
 <?php
 /**
- * @package   AllediaCARootCertificates
+ * @package   OSCARootCertificates
  * @contact   www.ostraining.com, support@ostraining.com
  * @copyright 2013-2014 Open Source Training, LLC. All rights reserved
  * @license   http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL
@@ -13,10 +13,10 @@ defined('_JEXEC') or die();
 require_once 'include.php';
 
 /**
- * AllediaCARootCertificates System Plugin
+ * OSCARootCertificates System Plugin
  *
  */
-class PlgSystemAllediaCARootCertificates extends AbstractPlugin
+class PlgSystemOSCARootCertificates extends AbstractPlugin
 {
     /**
      * Class constructor that instantiate the pro library, if installed
@@ -28,7 +28,7 @@ class PlgSystemAllediaCARootCertificates extends AbstractPlugin
      */
     public function __construct(&$subject, $config = array())
     {
-        $this->namespace = 'AllediaCARootCertificates';
+        $this->namespace = 'OSCARootCertificates';
 
         parent::__construct($subject, $config);
     }

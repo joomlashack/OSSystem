@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <extension version="2.5" type="plugin" group="system" method="upgrade">
-    <name>PLG_SYSTEM_ALLEDIACAROOTCERTIFICATES</name>
+    <name>PLG_SYSTEM_OSCAROOTCERTIFICATES</name>
     <author>Alledia</author>
     <creationDate>September 25 2014</creationDate>
     <copyright>Copyright (C) 2013-2014 OSTraining.com</copyright>
@@ -8,7 +8,7 @@
     <authorEmail>hello@alledia.com</authorEmail>
     <authorUrl>http://www.alledia.com</authorUrl>
     <version>1.0.0</version>
-    <description>PLG_SYSTEM_ALLEDIACAROOTCERTIFICATES_DESCRIPTION</description>
+    <description>PLG_SYSTEM_OSCAROOTCERTIFICATES_DESCRIPTION</description>
 
     <scriptfile>script.installer.php</scriptfile>
 
@@ -16,14 +16,14 @@
         <folder>language</folder>
         <folder>library</folder>
         <folder>views</folder>
-        <filename plugin="allediacarootcertificates">allediacarootcertificates.php</filename>
+        <filename plugin="oscarootcertificates">oscarootcertificates.php</filename>
         <filename>include.php</filename>
     </files>
 
     <alledia>
-        <element publish="true">allediacarootcertificates</element>
+        <element publish="true">oscarootcertificates</element>
 
-        <namespace>AllediaCARootCertificates</namespace>
+        <namespace>OSCARootCertificates</namespace>
 
         <relatedExtensions>
             <extension
@@ -33,6 +33,6 @@
     </alledia>
 
     <updateservers>
-        <server type="extension" priority="1" name="AllediaCARootCertificates"><![CDATA[https://deploy.ostraining.com/updates/joomla/plg_system_allediacarootcertificates.xml]]></server>
+        <server type="extension" priority="1" name="OSCARootCertificates"><![CDATA[https://deploy.ostraining.com/updates/joomla/plg_system_oscarootcertificates.xml]]></server>
     </updateservers>
 </extension>

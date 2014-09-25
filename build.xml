@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project name="Alledia CA Root Certificates" default="">
+<project name="OS CA Root Certificates" default="">
     <property file="../build.global.properties" />
 
     <import file="${builder.path}/src/build.xml"/>

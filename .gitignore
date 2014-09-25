@@ -48,3 +48,4 @@ _notes/
 
 packages/*
 !packages/.gitkeep
+!packages/.build.properties

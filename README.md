@@ -1,10 +1,10 @@
 [![OS Training](http://www.ostraining.com/templates/ostraining/images/logo.png)](http://www.ostraining.com)
-Alledia CA Root Certificates
+OS CA Root Certificates
 ============
 
 ## About
 
-A system plugin for Alledia extensions to check and fix the CA Root Certificates
+A system plugin for Alledia/OSTraining extensions to check and fix the CA Root Certificates
 
 ## Requirements
 

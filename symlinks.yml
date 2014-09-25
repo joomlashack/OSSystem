@@ -1,2 +1,2 @@
 symlinks:
-    - src: plugins/system/allediacarootcertificates
+    - src: plugins/system/oscarootcertificates

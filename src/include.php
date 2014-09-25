@@ -1,6 +1,6 @@
 <?php
 /**
- * @package   AllediaCARootCertificates
+ * @package   OSCARootCertificates
  * @contact   www.ostraining.com, support@ostraining.com
  * @copyright 2013-2014 Open Source Training, LLC. All rights reserved
  * @license   http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL
@@ -8,7 +8,7 @@
 
 defined('_JEXEC') or die();
 
-define('ALLEDIACAROOTCERTIFICATES_PLUGIN_PATH', __DIR__);
+define('OSCAROOTCERTIFICATES_PLUGIN_PATH', __DIR__);
 
 // Alledia Framework
 if (!defined('ALLEDIA_FRAMEWORK_LOADED')) {

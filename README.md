@@ -7,6 +7,14 @@ OS CA Root Certificates
 
 A system plugin for Alledia/OSTraining extensions to check and fix the CA Root Certificates
 
+It analyses and "fix" the file:
+
+    /libraries/joomla/http/transport/cacert.pem
+
+Before do any change (for the first time) it creates a backup on the same path named:
+
+    cacert.pem.oscarootcertificates-backup
+
 ## Requirements
 
 Joomla 2.5.x or 3.x

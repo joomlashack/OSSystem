@@ -21,8 +21,8 @@ class PlgSystemOSCARootCertificates extends AbstractPlugin
     /**
      * Class constructor that instantiate the pro library, if installed
      *
-     * @param   object  &$subject  The object to observe
-     * @param   array   $config    An optional associative array of configuration settings.
+     * @param object &$subject     The object to observe
+     * @param array  $config       An optional associative array of configuration settings.
      *                             Recognized key values include 'name', 'group', 'params', 'language'
      *                             (this list is not meant to be comprehensive).
      */
@@ -46,14 +46,14 @@ class PlgSystemOSCARootCertificates extends AbstractPlugin
         $app    = JFactory::getApplication();
         $option = $app->input->getCmd('option');
         $view   = $app->input->getCmd('view');
-        $task = $app->input->getCmd('task');
+        $task   = $app->input->getCmd('task');
 
         // Filter the request, to only trigger when the user is looking for an update
         if ($app->getName() != 'administrator'
             || $option !== 'com_installer'
-            || $view !== 'update'
-            || $task !== 'update.find') {
-
+            || !in_array($view, array('install', 'update'))
+            || !in_array($task, array('install.install', 'update.find'))
+        ) {
             return;
         }
 

@@ -8,7 +8,6 @@
 
 require_once 'library/installer/include.php';
 
-
 defined('_JEXEC') or die();
 
 class PlgSystemOSCARootCertificatesInstallerScript extends AllediaInstallerAbstract

@@ -35,6 +35,6 @@
     </alledia>
 
     <updateservers>
-        <server type="extension" priority="1" name="OSCARootCertificates"><![CDATA[https://deploy.ostraining.com:3425/updates/joomla/free/stable/plg_system_oscarootcertificates]]></server>
+        <server type="extension" priority="1" name="OSCARootCertificates"><![CDATA[https://deploy.ostraining.com/client/update/free/stable/plg_system_oscarootcertificates]]></server>
     </updateservers>
 </extension>

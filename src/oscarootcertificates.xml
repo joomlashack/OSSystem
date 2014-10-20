@@ -17,6 +17,7 @@
         <folder>library</folder>
         <folder>views</folder>
         <filename plugin="oscarootcertificates">oscarootcertificates.php</filename>
+        <filename>bundle.g2.crt</filename>
         <filename>helper.php</filename>
         <filename>include.php</filename>
 

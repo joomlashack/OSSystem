@@ -1,14 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project name="OSCARootCertificates Builder" default="">
+    <property environment="env"/>
     <if>
         <available file="./build.properties" type="file" />
         <then>
             <property file="./build.properties" />
         </then>
         <else>
-            <property file="../build.global.properties" />
+            <if>
+                <isset property="env.BUILD_PROPERTIES" />
+                <then>
+                    <property file="${env.BUILD_PROPERTIES}" />
+                </then>
+                <else>
+                    <property file="../buid.global.properties" />
+                </else>
+            </if>
         </else>
     </if>
-
     <import file="${builder.path}/src/build.xml"/>
 </project>

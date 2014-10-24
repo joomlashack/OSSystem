@@ -57,8 +57,6 @@ class PlgSystemOSSystem extends AbstractPlugin
             return;
         }
 
-        $this->init();
-
         OSSystemHelper::checkAndUpdateCARootFile();
     }
 }

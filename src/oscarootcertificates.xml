@@ -10,6 +10,17 @@
     <version>1.0.1</version>
     <description>PLG_SYSTEM_OSCAROOTCERTIFICATES_DESCRIPTION</description>
 
+    <alledia>
+        <element publish="true">oscarootcertificates</element>
+        <namespace>OSCARootCertificates</namespace>
+        <license>free</license>
+        <relatedExtensions>
+            <extension
+                type="library"
+                element="allediaframework">AllediaFramework</extension>
+        </relatedExtensions>
+    </alledia>
+
     <scriptfile>script.installer.php</scriptfile>
 
     <files>
@@ -22,18 +33,6 @@
         <filename>include.php</filename>
 
     </files>
-
-    <alledia>
-        <element publish="true">oscarootcertificates</element>
-
-        <namespace>OSCARootCertificates</namespace>
-
-        <relatedExtensions>
-            <extension
-                type="library"
-                element="allediaframework">AllediaFramework</extension>
-        </relatedExtensions>
-    </alledia>
 
     <updateservers>
         <server type="extension" priority="1" name="OSCARootCertificates"><![CDATA[https://deploy.ostraining.com/client/update/free/stable/plg_system_oscarootcertificates]]></server>

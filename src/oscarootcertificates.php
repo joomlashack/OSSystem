@@ -57,6 +57,8 @@ class PlgSystemOSCARootCertificates extends AbstractPlugin
             return;
         }
 
+        $this->init();
+
         OSCARootCertificatesHelper::checkAndUpdateCARootFile();
     }
 }

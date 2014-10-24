@@ -1,2 +1,2 @@
 symlinks:
-    - src: plugins/system/oscarootcertificates
+    - src: plugins/system/ossystem

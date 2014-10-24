@@ -1,6 +1,6 @@
 <?php
 /**
- * @package   OSCARootCertificates
+ * @package   OSSystem
  * @contact   www.alledia.com, hello@alledia.com
  * @copyright 2014 Alledia.com, All rights reserved
  * @license   http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL
@@ -13,7 +13,7 @@ jimport('joomla.filesystem.file');
 /**
  * Helper class
  */
-abstract class OSCARootCertificatesHelper
+abstract class OSSystemHelper
 {
     /**
      * This method inspect Joomla's CA Root Certificates file looking
@@ -53,7 +53,7 @@ abstract class OSCARootCertificatesHelper
                         // Restore the header
                         $certificate = trim("-----BEGIN CERTIFICATE-----" . $certificate);
                         $certificate = "Go Daddy Class 2 CA - Alledia\n=============================\n" . $certificate;
-                        $certificate = "## Added by OSCARootCertificates for Alledia - "
+                        $certificate = "## Added by OSSystem for Alledia - "
                             . $timestamp . "\n" . $certificate;
 
                         // Append the certificate
@@ -67,7 +67,7 @@ abstract class OSCARootCertificatesHelper
 
             if ($contentUpdated) {
                 // We need to update the file, so let's check if we have a backup and create if needed
-                $backupFilePath = JPATH_SITE . '/libraries/joomla/http/transport/cacert.pem.oscarootcertificates-backup';
+                $backupFilePath = JPATH_SITE . '/libraries/joomla/http/transport/cacert.pem.ossystem-backup';
                 if (!JFile::exists($backupFilePath)) {
                     $backupDirPath = dirname($joomlaCACertificatesPath);
 

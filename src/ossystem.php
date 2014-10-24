@@ -1,6 +1,6 @@
 <?php
 /**
- * @package   OSCARootCertificates
+ * @package   OSSystem
  * @contact   www.alledia.com, hello@alledia.com
  * @copyright 2014 Alledia.com, All rights reserved
  * @license   http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL
@@ -13,10 +13,10 @@ defined('_JEXEC') or die();
 require_once 'include.php';
 
 /**
- * OSCARootCertificates System Plugin
+ * OSSystem System Plugin
  *
  */
-class PlgSystemOSCARootCertificates extends AbstractPlugin
+class PlgSystemOSSystem extends AbstractPlugin
 {
     /**
      * Class constructor that instantiate the pro library, if installed
@@ -28,7 +28,7 @@ class PlgSystemOSCARootCertificates extends AbstractPlugin
      */
     public function __construct(&$subject, $config = array())
     {
-        $this->namespace = 'OSCARootCertificates';
+        $this->namespace = 'OSSystem';
 
         parent::__construct($subject, $config);
     }
@@ -59,6 +59,6 @@ class PlgSystemOSCARootCertificates extends AbstractPlugin
 
         $this->init();
 
-        OSCARootCertificatesHelper::checkAndUpdateCARootFile();
+        OSSystemHelper::checkAndUpdateCARootFile();
     }
 }

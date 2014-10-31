@@ -14,11 +14,12 @@ define('OSSYSTEM_PLUGIN_PATH', __DIR__);
 if (!defined('ALLEDIA_FRAMEWORK_LOADED')) {
     $allediaFrameworkPath = JPATH_SITE . '/libraries/allediaframework/include.php';
 
-    if (!file_exists($allediaFrameworkPath)) {
-        throw new Exception('Alledia framework not found [OSSystem]');
+    if (file_exists($allediaFrameworkPath)) {
+        require_once $allediaFrameworkPath;
+    } else {
+        JFactory::getApplication()
+            ->enqueueMessage('[OSSystem] Alledia framework not found', 'error');
     }
-
-    require_once $allediaFrameworkPath;
 }
 
 if (!class_exists('OSSystemHelper')) {

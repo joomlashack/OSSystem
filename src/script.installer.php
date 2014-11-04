@@ -17,4 +17,16 @@ use Alledia\Installer\AbstractScript;
  */
 class PlgSystemOSSystemInstallerScript extends AbstractScript
 {
+    /**
+     * Delete obsolete files, folders and extensions.
+     * Files and folders are identified from the site
+     * root path and should starts with a slash.
+     */
+    protected function clearObsolete()
+    {
+        // Fix the uninstall for the depracated plugin OSCARootCertificates
+        if (! class_exists('AllediaInstallerAbstract')) {
+            require_once __DIR__ . '/legacy/AllediaInstallerAbstract.php';
+        }
+    }
 }

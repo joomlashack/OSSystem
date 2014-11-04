@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <extension version="2.5" type="plugin" group="system" method="upgrade">
-    <name>PLG_SYSTEM_OSSYSTEM</name>
+    <name>plg_system_ossystem</name>
     <author>Alledia</author>
     <creationDate>October 31 2014</creationDate>
     <copyright>Copyright (C) 2014 Alledia.com</copyright>

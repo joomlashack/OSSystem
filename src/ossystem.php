@@ -6,7 +6,7 @@
  * @license   http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL
  */
 
-use Alledia\Framework\Joomla\Extension\AbstractPlugin;
+use Alledia\Framework\Joomla\Extension\Abstract\Plugin;
 
 defined('_JEXEC') or die();
 
@@ -17,7 +17,7 @@ if (defined('ALLEDIA_FRAMEWORK_LOADED')) {
      * OSSystem System Plugin
      *
      */
-    class PlgSystemOSSystem extends AbstractPlugin
+    class PlgSystemOSSystem extends Plugin
     {
         /**
          * Class constructor that instantiate the pro library, if installed

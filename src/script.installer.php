@@ -18,15 +18,41 @@ use Alledia\Installer\AbstractScript;
 class PlgSystemOSSystemInstallerScript extends AbstractScript
 {
     /**
-     * Delete obsolete files, folders and extensions.
-     * Files and folders are identified from the site
-     * root path and should starts with a slash.
+     * @param string                     $type
+     * @param JInstallerAdapterComponent $parent
+     *
+     * @return bool
      */
-    protected function clearObsolete()
+    public function preFlight($type, $parent)
     {
-        // Fix the uninstall for the depracated plugin OSCARootCertificates
-        if (! class_exists('AllediaInstallerAbstract')) {
-            require_once __DIR__ . '/legacy/AllediaInstallerAbstract.php';
+        parent::preFlight($type, $parent);
+
+        /* Uninstall the depracated plugin OSCARootCertificates.
+         * The parent method can't be used because the old plugin
+         * has a bug that doesn't allow to use the native uninstall method.
+         */
+        jimport('joomla.filesystem.folder');
+
+        $success = false;
+
+        $path = JPATH_SITE . '/plugins/system/oscarootcertificates';
+        if (JFolder::exists($path)) {
+            $success = JFolder::delete($path);
         }
+
+        $db = JFactory::getDbo();
+        $query = $db->getQuery(true)
+            ->delete('#__extensions')
+            ->where($db->qn('type') . ' = ' . $db->q('plugin'))
+            ->where($db->qn('element') . ' = ' . $db->q('oscarootcertificates'))
+            ->where($db->qn('folder') . ' = ' . $db->q('system'));
+        $db->setQuery($query);
+        $success = $db->execute();
+
+        if ((bool) $success) {
+            $this->setMessage('Uninstalling system plugin OSCARootCertificates was successful');
+        }
+
+        return true;
     }
 }

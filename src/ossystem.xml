@@ -20,16 +20,6 @@
                 type="library"
                 element="allediaframework">AllediaFramework</extension>
         </relatedExtensions>
-
-        <obsolete>
-            <extension
-                type="plugin"
-                group="system"
-                element="oscarootcertificates"
-                publish="true"
-                ordering="first"
-                >OSCARootCertificates</extension>
-        </obsolete>
     </alledia>
 
     <scriptfile>script.installer.php</scriptfile>

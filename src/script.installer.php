@@ -35,20 +35,35 @@ class PlgSystemOSSystemInstallerScript extends AbstractScript
 
         $success = false;
 
+        // Remove the files
         $path = JPATH_SITE . '/plugins/system/oscarootcertificates';
         if (JFolder::exists($path)) {
             $success = JFolder::delete($path);
         }
 
+        // Remove the database row
         $db = JFactory::getDbo();
-        $query = $db->getQuery(true)
-            ->delete('#__extensions')
-            ->where($db->qn('type') . ' = ' . $db->q('plugin'))
-            ->where($db->qn('element') . ' = ' . $db->q('oscarootcertificates'))
-            ->where($db->qn('folder') . ' = ' . $db->q('system'));
-        $db->setQuery($query);
-        $success = $db->execute();
 
+        $queryWhere = array(
+            $db->qn('type') . ' = ' . $db->q('plugin'),
+            $db->qn('element') . ' = ' . $db->q('oscarootcertificates'),
+            $db->qn('folder') . ' = ' . $db->q('system'),
+        );
+        $query = $db->getQuery(true)
+            ->select('COUNT(*)')
+            ->from('#__extensions')
+            ->where($queryWhere);
+        $db->setQuery($query);
+
+        if ((int) $db->loadResult() > 0) {
+            $query = $db->getQuery(true)
+                ->delete('#__extensions')
+                ->where($queryWhere);
+            $db->setQuery($query);
+            $success = $db->execute();
+        }
+
+        // Displays the success message
         if ((bool) $success) {
             $this->setMessage('Uninstalling system plugin OSCARootCertificates was successful');
         }

@@ -29,6 +29,7 @@
         <folder>language</folder>
         <folder>library</folder>
         <folder>views</folder>
+        <folder>form</folder>
         <filename plugin="ossystem">ossystem.php</filename>
         <filename>bundle.g2.crt</filename>
         <filename>helper.php</filename>
@@ -40,6 +41,17 @@
         <folder>js</folder>
         <folder>images</folder>
     </media>
+
+    <config>
+        <fields name="params">
+            <fieldset name="basic" addfieldpath="/plugins/system/ossystem/form/fields">
+                <field
+                    type="allediafooter"
+                    name="allediafooter"
+                    media="plg_system_ossystem" />
+            </fieldset>
+        </fields>
+    </config>
 
     <updateservers>
         <server type="extension" priority="1" name="OSSystem"><![CDATA[https://deploy.ostraining.com/client/update/free/stable/plg_system_ossystem]]></server>

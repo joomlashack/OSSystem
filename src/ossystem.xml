@@ -20,6 +20,7 @@
                 type="library"
                 element="allediaframework">AllediaFramework</extension>
         </relatedExtensions>
+        <include>AllediaFreeDefaultFiles</include>
     </alledia>
 
     <scriptfile>script.installer.php</scriptfile>

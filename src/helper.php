@@ -8,6 +8,9 @@
 
 defined('_JEXEC') or die();
 
+use Alledia\Framework\Joomla\Extension\Helper as ExtensionHelper;
+use Alledia\Framework\Factory;
+
 jimport('joomla.filesystem.file');
 
 /**
@@ -93,6 +96,27 @@ abstract class OSSystemHelper
 
                 // Restore the original permissions
                 chmod($joomlaCACertificatesPath, $fileInfo['mode']);
+            }
+        }
+    }
+
+    public static function addCustomFooterIntoNativeComponentOutput($element)
+    {
+        // Check if the specified extension is from Alledia
+        $extension = ExtensionHelper::getExtensionForElement($element);
+        $footer    = $extension->getFooterMarkup();
+
+        if (!empty($footer)) {
+            // Inject the custom footer
+            if (version_compare(JVERSION, '3.0', 'lt')) {
+                $body = JResponse::getBody();
+                $body = preg_replace('#(<p\salign="center">Joomla!\s[0-9.\s&;]*</p>)#i', $footer . '$1', $body);
+                JResponse::setBody($body);
+            } else {
+                $app  = Factory::getApplication();
+                $body = $app->getBody();
+                $body = str_replace('</section>', '</section>' . $footer, $body);
+                $app->setBody($body);
             }
         }
     }

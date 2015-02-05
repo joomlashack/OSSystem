@@ -6,9 +6,11 @@
  * @license   http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL
  */
 
-use Alledia\Framework\Joomla\Extension\AbstractPlugin;
-
 defined('_JEXEC') or die();
+
+use Alledia\Framework\Joomla\Extension\AbstractPlugin;
+use Alledia\Framework\Joomla\Extension\Helper as ExtensionHelper;
+use Alledia\Framework\Factory;
 
 require_once 'include.php';
 
@@ -44,7 +46,7 @@ if (defined('ALLEDIA_FRAMEWORK_LOADED')) {
          */
         public function onAfterRoute()
         {
-            $app    = JFactory::getApplication();
+            $app    = Factory::getApplication();
             $option = $app->input->getCmd('option');
             $view   = $app->input->getCmd('view');
             $task   = $app->input->getCmd('task');
@@ -59,6 +61,24 @@ if (defined('ALLEDIA_FRAMEWORK_LOADED')) {
             }
 
             OSSystemHelper::checkAndUpdateCARootFile();
+        }
+
+        public function onAfterRender()
+        {
+            $app       = Factory::getApplication();
+            $option    = $app->input->getCmd('option');
+            $view      = $app->input->getCmd('view');
+            $task      = $app->input->getCmd('task');
+            $extension = $app->input->getCmd('extension', null);
+
+            // Execute only in admin and in the com_categories component
+            if ($app->getName() === 'administrator'
+                && $option === 'com_categories'
+                && $extension !== 'com_content'
+                && !empty($extension)
+            ) {
+                OSSystemHelper::addCustomFooterIntoNativeComponentOutput($extension);
+            }
         }
     }
 }

@@ -46,8 +46,8 @@
         <fields name="params">
             <fieldset name="basic" addfieldpath="/plugins/system/ossystem/form/fields">
                 <field
-                    type="allediafooter"
-                    name="allediafooter"
+                    type="customfooter"
+                    name="customfooter"
                     media="plg_system_ossystem" />
             </fieldset>
         </fields>

@@ -31,7 +31,6 @@
         <folder>views</folder>
         <folder>form</folder>
         <filename plugin="ossystem">ossystem.php</filename>
-        <filename>bundle.g2.crt</filename>
         <filename>helper.php</filename>
         <filename>include.php</filename>
     </files>

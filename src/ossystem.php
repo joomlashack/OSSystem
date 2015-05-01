@@ -53,5 +53,20 @@ if (defined('ALLEDIA_FRAMEWORK_LOADED')) {
                 OSSystemHelper::addCustomFooterIntoNativeComponentOutput($extension);
             }
         }
+
+        /**
+         * This method looks for a backup of cacert.pem file created
+         * by an prior release of this plugin, restoring it if found.
+         *
+         * @return void
+         */
+        public function onAfterInitialise()
+        {
+            $app = Factory::getApplication();
+
+            if ($app->getName() === 'administrator') {
+                OSSystemHelper::revertCARootFileToOriginal();
+            }
+        }
     }
 }

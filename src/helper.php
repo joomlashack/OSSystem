@@ -38,4 +38,19 @@ abstract class OSSystemHelper
             }
         }
     }
+
+    public static function revertCARootFileToOriginal()
+    {
+        // Get the original Joomla file
+        $joomlaCACertificatesPath = JPATH_SITE . '/libraries/joomla/http/transport/cacert.pem';
+        $backupCACertificatesPath = JPATH_SITE . '/libraries/joomla/http/transport/cacert.pem.ossystem-backup';
+
+        if (file_exists($backupCACertificatesPath)) {
+            if (file_exists($joomlaCACertificatesPath)) {
+                JFile::delete($joomlaCACertificatesPath);
+            }
+
+            JFile::move($backupCACertificatesPath, $joomlaCACertificatesPath);
+        }
+    }
 }

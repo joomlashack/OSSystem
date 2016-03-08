@@ -65,7 +65,7 @@ class PlgSystemOSSystemInstallerScript extends AbstractScript
 
         // Displays the success message
         if ((bool) $success) {
-            $this->setMessage('Uninstalling system plugin OSCARootCertificates was successful');
+            $this->setMessage('OSSystem OSCARootCertificates uninstalled successfully');
         }
 
         return true;

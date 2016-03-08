@@ -6,16 +6,19 @@
  * @license   http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL
  */
 
+use Alledia\Installer;
+
 defined('_JEXEC') or die();
 
 require_once 'library/Installer/include.php';
 
-use Alledia\Installer\AbstractScript;
+jimport('joomla.filesystem.folder');
+
 
 /**
  * Custom installer script
  */
-class PlgSystemOSSystemInstallerScript extends AbstractScript
+class PlgSystemOSSystemInstallerScript extends Installer\AbstractScript
 {
     /**
      * @param string                     $type
@@ -31,8 +34,6 @@ class PlgSystemOSSystemInstallerScript extends AbstractScript
          * The parent method can't be used because the old plugin
          * has a bug that doesn't allow to use the native uninstall method.
          */
-        jimport('joomla.filesystem.folder');
-
         $success = false;
 
         // Remove the files

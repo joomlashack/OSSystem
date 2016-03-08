@@ -2,46 +2,36 @@
 /**
  * @package   OSSystem
  * @contact   www.alledia.com, hello@alledia.com
- * @copyright 2015 Open Source Training, LLC. All rights reserved
+ * @copyright 2016 Open Source Training, LLC. All rights reserved
  * @license   http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL
  */
 
 defined('_JEXEC') or die();
 
-use Alledia\Framework\Joomla\Extension\AbstractPlugin;
-use Alledia\Framework\Joomla\Extension\Helper as ExtensionHelper;
-use Alledia\Framework\Factory;
+use Alledia\Framework\Joomla\Extension;
+use Alledia\Framework;
+use Alledia\OSSystem;
 
-require_once 'include.php';
+include_once 'include.php';
 
-if (defined('ALLEDIA_FRAMEWORK_LOADED')) {
+if (defined('OSSYSTEM_LOADED')) {
     /**
      * OSSystem System Plugin
      *
      */
-    class PlgSystemOSSystem extends AbstractPlugin
+    class PlgSystemOSSystem extends Extension\AbstractPlugin
     {
         /**
-         * Class constructor that instantiate the pro library, if installed
+         * Library namespace
          *
-         * @param object &$subject     The object to observe
-         * @param array  $config       An optional associative array of configuration settings.
-         *                             Recognized key values include 'name', 'group', 'params', 'language'
-         *                             (this list is not meant to be comprehensive).
+         * @var string
          */
-        public function __construct(&$subject, $config = array())
-        {
-            $this->namespace = 'OSSystem';
-
-            parent::__construct($subject, $config);
-        }
+        protected $namespace = 'OSSystem';
 
         public function onAfterRender()
         {
-            $app       = Factory::getApplication();
+            $app       = Framework\Factory::getApplication();
             $option    = $app->input->getCmd('option');
-            $view      = $app->input->getCmd('view');
-            $task      = $app->input->getCmd('task');
             $extension = $app->input->getCmd('extension', null);
 
             // Execute only in admin and in the com_categories component
@@ -50,7 +40,7 @@ if (defined('ALLEDIA_FRAMEWORK_LOADED')) {
                 && $extension !== 'com_content'
                 && !empty($extension)
             ) {
-                OSSystemHelper::addCustomFooterIntoNativeComponentOutput($extension);
+                OSSystem\Helper::addCustomFooterIntoNativeComponentOutput($extension);
             }
         }
 
@@ -62,10 +52,10 @@ if (defined('ALLEDIA_FRAMEWORK_LOADED')) {
          */
         public function onAfterInitialise()
         {
-            $app = Factory::getApplication();
+            $app = Framework\Factory::getApplication();
 
             if ($app->getName() === 'administrator') {
-                OSSystemHelper::revertCARootFileToOriginal();
+                OSSystem\Helper::revertCARootFileToOriginal();
             }
         }
     }

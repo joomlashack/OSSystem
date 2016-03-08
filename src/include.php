@@ -2,13 +2,13 @@
 /**
  * @package   OSSystem
  * @contact   www.ostraining.com, support@ostraining.com
- * @copyright 2013-2014 Open Source Training, LLC. All rights reserved
+ * @copyright 2016 Open Source Training, LLC. All rights reserved
  * @license   http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL
  */
 
-defined('_JEXEC') or die();
+use Alledia\Framework;
 
-define('OSSYSTEM_PLUGIN_PATH', __DIR__);
+defined('_JEXEC') or die();
 
 // Alledia Framework
 if (!defined('ALLEDIA_FRAMEWORK_LOADED')) {
@@ -17,11 +17,26 @@ if (!defined('ALLEDIA_FRAMEWORK_LOADED')) {
     if (file_exists($allediaFrameworkPath)) {
         require_once $allediaFrameworkPath;
     } else {
-        JFactory::getApplication()
-            ->enqueueMessage('[OSSystem] Alledia framework not found', 'error');
+        $app = JFactory::getApplication();
+
+        if ($app->isAdmin()) {
+            $app->enqueueMessage('[OSSystem] Alledia framework not found', 'error');
+        }
     }
 }
 
-if (!class_exists('OSSystemHelper')) {
-    require_once 'helper.php';
+if (defined('ALLEDIA_FRAMEWORK_LOADED')) {
+    define('OSSYSTEM_PATH', __DIR__);
+    define('OSSYSTEM_LIBRARY', OSSYSTEM_PATH . '/library');
+
+    Framework\AutoLoader::register('Alledia\OSSystem', OSSYSTEM_LIBRARY);
+
+    // Only for backward compatibility
+    if (!class_exists('OSSystemHelper')) {
+        include_once 'helper.php';
+    }
+
+    if (class_exists('Alledia\OSSystem\Helper')) {
+        define('OSSYSTEM_LOADED', 1);
+    }
 }

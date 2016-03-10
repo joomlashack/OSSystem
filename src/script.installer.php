@@ -18,57 +18,59 @@ jimport('joomla.filesystem.folder');
 /**
  * Custom installer script
  */
-class PlgSystemOSSystemInstallerScript extends Installer\AbstractScript
-{
-    /**
-     * @param string                     $type
-     * @param JInstallerAdapterComponent $parent
-     *
-     * @return bool
-     */
-    public function preFlight($type, $parent)
+if (!class_exists('PlgSystemOSSystemInstallerScript')) {
+    class PlgSystemOSSystemInstallerScript extends Installer\AbstractScript
     {
-        parent::preFlight($type, $parent);
-
-        /* Uninstall the depracated plugin OSCARootCertificates.
-         * The parent method can't be used because the old plugin
-         * has a bug that doesn't allow to use the native uninstall method.
+        /**
+         * @param string                     $type
+         * @param JInstallerAdapterComponent $parent
+         *
+         * @return bool
          */
-        $success = false;
+        public function preFlight($type, $parent)
+        {
+            parent::preFlight($type, $parent);
 
-        // Remove the files
-        $path = JPATH_SITE . '/plugins/system/oscarootcertificates';
-        if (JFolder::exists($path)) {
-            $success = JFolder::delete($path);
-        }
+            /* Uninstall the depracated plugin OSCARootCertificates.
+             * The parent method can't be used because the old plugin
+             * has a bug that doesn't allow to use the native uninstall method.
+             */
+            $success = false;
 
-        // Remove the database row
-        $db = JFactory::getDbo();
+            // Remove the files
+            $path = JPATH_SITE . '/plugins/system/oscarootcertificates';
+            if (JFolder::exists($path)) {
+                $success = JFolder::delete($path);
+            }
 
-        $queryWhere = array(
-            $db->qn('type') . ' = ' . $db->q('plugin'),
-            $db->qn('element') . ' = ' . $db->q('oscarootcertificates'),
-            $db->qn('folder') . ' = ' . $db->q('system'),
-        );
-        $query = $db->getQuery(true)
-            ->select('COUNT(*)')
-            ->from('#__extensions')
-            ->where($queryWhere);
-        $db->setQuery($query);
+            // Remove the database row
+            $db = JFactory::getDbo();
 
-        if ((int) $db->loadResult() > 0) {
+            $queryWhere = array(
+                $db->qn('type') . ' = ' . $db->q('plugin'),
+                $db->qn('element') . ' = ' . $db->q('oscarootcertificates'),
+                $db->qn('folder') . ' = ' . $db->q('system'),
+            );
             $query = $db->getQuery(true)
-                ->delete('#__extensions')
+                ->select('COUNT(*)')
+                ->from('#__extensions')
                 ->where($queryWhere);
             $db->setQuery($query);
-            $success = $db->execute();
-        }
 
-        // Displays the success message
-        if ((bool) $success) {
-            $this->setMessage('OSSystem OSCARootCertificates uninstalled successfully');
-        }
+            if ((int) $db->loadResult() > 0) {
+                $query = $db->getQuery(true)
+                    ->delete('#__extensions')
+                    ->where($queryWhere);
+                $db->setQuery($query);
+                $success = $db->execute();
+            }
 
-        return true;
+            // Displays the success message
+            if ((bool) $success) {
+                $this->setMessage('OSSystem OSCARootCertificates uninstalled successfully');
+            }
+
+            return true;
+        }
     }
 }

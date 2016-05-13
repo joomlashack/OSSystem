@@ -25,7 +25,7 @@ if (!defined('ALLEDIA_FRAMEWORK_LOADED')) {
     }
 }
 
-if (defined('ALLEDIA_FRAMEWORK_LOADED')) {
+if (defined('ALLEDIA_FRAMEWORK_LOADED') && !defined('OSSYSTEM_LOADED')) {
     define('OSSYSTEM_PATH', __DIR__);
     define('OSSYSTEM_LIBRARY', OSSYSTEM_PATH . '/library');
 

@@ -39,4 +39,8 @@ if (defined('ALLEDIA_FRAMEWORK_LOADED')) {
     if (class_exists('Alledia\OSSystem\Helper')) {
         define('OSSYSTEM_LOADED', 1);
     }
+
+    // Load additional global language file
+    Framework\Factory::getLanguage()
+        ->load('plg_system_ossystem', OSSYSTEM_PATH, 'en-GB', true);
 }

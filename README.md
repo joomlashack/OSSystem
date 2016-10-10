@@ -1,11 +1,11 @@
-[![Alledia](https://www.alledia.com/images/logo_circle_small.png)](https://www.alledia.com)
+[![Joomlashack](https://www.joomlashack.com/images/logo_circle_small.png)](https://www.joomlashack.com)
 
 OSSystem
 ============
 
 ## About
 
-A system plugin which supports Alledia extensions.
+A system plugin which supports Joomlashack/Alledia extensions.
 
 ## Requirements
 

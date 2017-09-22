@@ -48,6 +48,7 @@
     <alledia>
         <element publish="true">ossystem</element>
         <namespace>OSSystem</namespace>
+        <name>Joomlashack System Plugin</name>
         <license>free</license>
         <targetplatform>3.*</targetplatform>
 

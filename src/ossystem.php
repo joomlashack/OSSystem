@@ -21,20 +21,16 @@
  * along with OSSystem.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-defined('_JEXEC') or die();
+use Alledia\Framework\Factory;
+use Alledia\Framework\Joomla\Extension\AbstractPlugin;
+use Alledia\OSSystem\Helper;
 
-use Alledia\Framework\Joomla\Extension;
-use Alledia\Framework;
-use Alledia\OSSystem;
+defined('_JEXEC') or die();
 
 include_once 'include.php';
 
-if (defined('OSSYSTEM_LOADED')) {
-    /**
-     * OSSystem System Plugin
-     *
-     */
-    class PlgSystemOSSystem extends Extension\AbstractPlugin
+if (class_exists('Alledia\\Framework\\Joomla\\Extension\\AbstractPlugin')) {
+    class PlgSystemOSSystem extends AbstractPlugin
     {
         /**
          * Library namespace
@@ -43,9 +39,13 @@ if (defined('OSSYSTEM_LOADED')) {
          */
         protected $namespace = 'OSSystem';
 
+        /**
+         * @return void
+         * @throws Exception
+         */
         public function onAfterRender()
         {
-            $app       = Framework\Factory::getApplication();
+            $app       = Factory::getApplication();
             $option    = $app->input->getCmd('option');
             $extension = $app->input->getCmd('extension', null);
 
@@ -55,7 +55,7 @@ if (defined('OSSYSTEM_LOADED')) {
                 && $extension !== 'com_content'
                 && !empty($extension)
             ) {
-                OSSystem\Helper::addCustomFooterIntoNativeComponentOutput($extension);
+                Helper::addCustomFooterIntoNativeComponentOutput($extension);
             }
         }
 
@@ -64,13 +64,14 @@ if (defined('OSSYSTEM_LOADED')) {
          * by an prior release of this plugin, restoring it if found.
          *
          * @return void
+         * @throws Exception
          */
         public function onAfterInitialise()
         {
-            $app = Framework\Factory::getApplication();
+            $app = Factory::getApplication();
 
             if ($app->getName() === 'administrator') {
-                OSSystem\Helper::revertCARootFileToOriginal();
+                Helper::revertCARootFileToOriginal();
             }
         }
     }

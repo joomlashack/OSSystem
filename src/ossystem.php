@@ -27,7 +27,9 @@ use Alledia\OSSystem\Helper;
 
 defined('_JEXEC') or die();
 
-include_once 'include.php';
+if (!include_once 'include.php') {
+    return;
+}
 
 if (class_exists('Alledia\\Framework\\Joomla\\Extension\\AbstractPlugin')) {
     class PlgSystemOSSystem extends AbstractPlugin

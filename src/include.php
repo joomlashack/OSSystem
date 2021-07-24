@@ -21,20 +21,21 @@
  * along with OSSystem.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-use Alledia\Framework;
+use Alledia\Installer\AutoLoader;
+use Joomla\CMS\Factory;
 
 defined('_JEXEC') or die();
 
-// Alledia Framework
 if (!defined('ALLEDIA_FRAMEWORK_LOADED')) {
     $allediaFrameworkPath = JPATH_SITE . '/libraries/allediaframework/include.php';
 
-    if (file_exists($allediaFrameworkPath)) {
+    if (is_file($allediaFrameworkPath)) {
         require_once $allediaFrameworkPath;
-    } else {
-        $app = JFactory::getApplication();
 
-        if ($app->isAdmin()) {
+    } else {
+        $app = Factory::getApplication();
+
+        if ($app->isClient('administrator')) {
             $app->enqueueMessage('[Joomlashack System Plugin] Alledia framework not found', 'error');
         }
     }
@@ -44,13 +45,13 @@ if (defined('ALLEDIA_FRAMEWORK_LOADED') && !defined('OSSYSTEM_LOADED')) {
     define('OSSYSTEM_PATH', __DIR__);
     define('OSSYSTEM_LIBRARY', OSSYSTEM_PATH . '/library');
 
-    Framework\AutoLoader::register('\\Alledia\\OSSystem', OSSYSTEM_LIBRARY);
+    AutoLoader::register('\\Alledia\\OSSystem', OSSYSTEM_LIBRARY);
 
     if (class_exists('\\Alledia\\OSSystem\\Helper')) {
         define('OSSYSTEM_LOADED', 1);
     }
 
-    // Load additional global language file
-    Framework\Factory::getLanguage()
-        ->load('plg_system_ossystem', OSSYSTEM_PATH, 'en-GB', true);
+    Factory::getLanguage()->load('plg_system_ossystem', OSSYSTEM_PATH);
 }
+
+return defined('OSSYSTEM_LOADED');

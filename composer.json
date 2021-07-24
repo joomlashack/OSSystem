@@ -20,10 +20,6 @@
         }
     ],
     "require"          : {
-        "php"       : ">= 5.3"
-    },
-    "require-dev"      : {
-        "phing/phing": "*",
-        "codeception/codeception": "*"
+        "php"       : ">=7.2.5"
     }
 }

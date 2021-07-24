@@ -59,5 +59,9 @@
         </relatedExtensions>
 
         <include>AllediaFreeDefaultFiles</include>
+
+        <obsolete>
+            <file>/plugins/system/ossystem/helper.php</file>
+        </obsolete>
     </alledia>
 </extension>

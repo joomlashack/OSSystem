@@ -46,11 +46,6 @@ if (defined('ALLEDIA_FRAMEWORK_LOADED') && !defined('OSSYSTEM_LOADED')) {
 
     Framework\AutoLoader::register('\\Alledia\\OSSystem', OSSYSTEM_LIBRARY);
 
-    // Only for backward compatibility
-    if (!class_exists('OSSystemHelper')) {
-        include_once 'helper.php';
-    }
-
     if (class_exists('\\Alledia\\OSSystem\\Helper')) {
         define('OSSYSTEM_LOADED', 1);
     }

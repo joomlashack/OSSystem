@@ -24,6 +24,7 @@
 use Alledia\Framework\Factory;
 use Alledia\Framework\Joomla\Extension\AbstractPlugin;
 use Alledia\OSSystem\Helper;
+use Joomla\CMS\Application\CMSApplication;
 
 defined('_JEXEC') or die();
 
@@ -31,50 +32,48 @@ if (!include_once 'include.php') {
     return;
 }
 
-if (class_exists('Alledia\\Framework\\Joomla\\Extension\\AbstractPlugin')) {
-    class PlgSystemOSSystem extends AbstractPlugin
+class PlgSystemOSSystem extends AbstractPlugin
+{
+    /**
+     * @var CMSApplication
+     */
+    protected $app = null;
+
+    /**
+     * @inheritdoc
+     */
+    protected $namespace = 'OSSystem';
+
+    /**
+     * @return void
+     * @throws Exception
+     */
+    public function onAfterRender()
     {
-        /**
-         * Library namespace
-         *
-         * @var string
-         */
-        protected $namespace = 'OSSystem';
+        $option    = $this->app->input->getCmd('option');
+        $extension = $this->app->input->getCmd('extension', null);
 
-        /**
-         * @return void
-         * @throws Exception
-         */
-        public function onAfterRender()
-        {
-            $app       = Factory::getApplication();
-            $option    = $app->input->getCmd('option');
-            $extension = $app->input->getCmd('extension', null);
-
-            // Execute only in admin and in the com_categories component
-            if ($app->getName() === 'administrator'
-                && $option === 'com_categories'
-                && $extension !== 'com_content'
-                && !empty($extension)
-            ) {
-                Helper::addCustomFooterIntoNativeComponentOutput($extension);
-            }
+        // Execute only in admin and in the com_categories component
+        if ($this->app->isClient('administrator')
+            && $option === 'com_categories'
+            && $extension !== 'com_content'
+            && !empty($extension)
+        ) {
+            Helper::addCustomFooterIntoNativeComponentOutput($extension);
         }
+    }
 
-        /**
-         * This method looks for a backup of cacert.pem file created
-         * by an prior release of this plugin, restoring it if found.
-         *
-         * @return void
-         * @throws Exception
-         */
-        public function onAfterInitialise()
-        {
-            $app = Factory::getApplication();
-
-            if ($app->getName() === 'administrator') {
-                Helper::revertCARootFileToOriginal();
-            }
+    /**
+     * This method looks for a backup of cacert.pem file created
+     * by an prior release of this plugin, restoring it if found.
+     *
+     * @return void
+     * @throws Exception
+     */
+    public function onAfterInitialise()
+    {
+        if ($this->app->isClient('administrator')) {
+            Helper::revertCARootFileToOriginal();
         }
     }
 }

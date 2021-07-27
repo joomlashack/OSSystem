@@ -22,12 +22,11 @@
  */
 
 use Alledia\Installer\AbstractScript;
-use Joomla\CMS\Filesystem\Folder;
-use Joomla\CMS\Installer\InstallerAdapter;
 
 defined('_JEXEC') or die();
 
 if (class_exists('\\PlgSystemOSSystemInstallerScript')) {
+    // This can be a related install
     return;
 }
 
@@ -35,54 +34,4 @@ require_once 'library/Installer/include.php';
 
 class PlgSystemOSSystemInstallerScript extends AbstractScript
 {
-    /**
-     * @inheritDoc
-     */
-    public function preFlight(string $type, InstallerAdapter $parent): bool
-    {
-        if (!parent::preFlight($type, $parent)) {
-            return false;
-        }
-
-        /* Uninstall the deprecated plugin OSCARootCertificates.
-         * The parent method can't be used because the old plugin
-         * has a bug that doesn't allow to use the native uninstall method.
-         */
-        $success = false;
-
-        // Remove the files
-        $path = JPATH_SITE . '/plugins/system/oscarootcertificates';
-        if (is_dir($path)) {
-            $success = Folder::delete($path);
-        }
-
-        // Remove the database row
-        $db = $this->dbo;
-
-        $queryWhere = [
-            $db->qn('type') . ' = ' . $db->q('plugin'),
-            $db->qn('element') . ' = ' . $db->q('oscarootcertificates'),
-            $db->qn('folder') . ' = ' . $db->q('system'),
-        ];
-        $query      = $db->getQuery(true)
-            ->select('COUNT(*)')
-            ->from('#__extensions')
-            ->where($queryWhere);
-        $db->setQuery($query);
-
-        if ((int)$db->loadResult() > 0) {
-            $query = $db->getQuery(true)
-                ->delete('#__extensions')
-                ->where($queryWhere);
-            $db->setQuery($query);
-            $success = $db->execute();
-        }
-
-        // Displays the success message
-        if ($success) {
-            $this->sendMessage('OSSystem OSCARootCertificates uninstalled successfully');
-        }
-
-        return true;
-    }
 }

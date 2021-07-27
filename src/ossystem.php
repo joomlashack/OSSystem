@@ -21,9 +21,7 @@
  * along with OSSystem.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-use Alledia\Framework\Factory;
 use Alledia\Framework\Joomla\Extension\AbstractPlugin;
-use Alledia\OSSystem\Helper;
 use Joomla\CMS\Application\CMSApplication;
 
 defined('_JEXEC') or die();
@@ -59,21 +57,20 @@ class PlgSystemOSSystem extends AbstractPlugin
             && $extension !== 'com_content'
             && !empty($extension)
         ) {
-            Helper::addCustomFooterIntoNativeComponentOutput($extension);
+            $this->addCustomFooterIntoNativeComponentOutput($extension);
         }
     }
 
-    /**
-     * This method looks for a backup of cacert.pem file created
-     * by an prior release of this plugin, restoring it if found.
-     *
-     * @return void
-     * @throws Exception
-     */
-    public function onAfterInitialise()
+    protected function addCustomFooterIntoNativeComponentOutput($element)
     {
-        if ($this->app->isClient('administrator')) {
-            Helper::revertCARootFileToOriginal();
+        // Check if the specified extension is from Alledia
+        $extension = \Alledia\Framework\Joomla\Extension\Helper::getExtensionForElement($element);
+        $footer    = $extension->getFooterMarkup();
+
+        if (!empty($footer)) {
+            $this->app->setBody(
+                str_replace('</section>', '</section>' . $footer, $this->app->getBody())
+            );
         }
     }
 }

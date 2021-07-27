@@ -21,7 +21,7 @@
  * along with OSSystem.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-use Alledia\Installer\AutoLoader;
+use Alledia\Framework\AutoLoader;
 use Joomla\CMS\Factory;
 
 defined('_JEXEC') or die();
@@ -42,14 +42,11 @@ if (!defined('ALLEDIA_FRAMEWORK_LOADED')) {
 }
 
 if (defined('ALLEDIA_FRAMEWORK_LOADED') && !defined('OSSYSTEM_LOADED')) {
+    define('OSSYSTEM_LOADED', true);
     define('OSSYSTEM_PATH', __DIR__);
     define('OSSYSTEM_LIBRARY', OSSYSTEM_PATH . '/library');
 
     AutoLoader::register('\\Alledia\\OSSystem', OSSYSTEM_LIBRARY);
-
-    if (class_exists('\\Alledia\\OSSystem\\Helper')) {
-        define('OSSYSTEM_LOADED', 1);
-    }
 
     Factory::getLanguage()->load('plg_system_ossystem', OSSYSTEM_PATH);
 }

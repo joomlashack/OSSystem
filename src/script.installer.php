@@ -28,12 +28,10 @@ use Joomla\CMS\Installer\InstallerAdapter;
 defined('_JEXEC') or die();
 
 if (class_exists('\\PlgSystemOSSystemInstallerScript')) {
-    \Joomla\CMS\Factory::getApplication()->enqueueMessage(__FILE__, 'warning');
     return;
 }
 
 require_once 'library/Installer/include.php';
-
 
 class PlgSystemOSSystemInstallerScript extends AbstractScript
 {

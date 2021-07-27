@@ -2,8 +2,8 @@
     "name"             : "joomlashack/ossystem",
     "description"      : "OSSystem",
     "minimum-stability": "stable",
-    "license"          : "GPL-2+",
-    "type"             : "joomla.plugin",
+    "license"          : "GPL-2.0-or-later",
+    "type"             : "joomla-plugin",
     "extra"            : {
         "element"        : "plg_system_ossystem",
         "element-short"  : "ossystem",

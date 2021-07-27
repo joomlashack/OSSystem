@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<extension version="3.9" type="plugin" group="system" method="upgrade">
+<extension type="plugin" group="system" method="upgrade">
     <name>PLG_SYSTEM_OSSYSTEM</name>
     <author>Joomlashack</author>
     <authorEmail>help@joomlashack.com</authorEmail>
@@ -61,6 +61,7 @@
 
         <obsolete>
             <file>/plugins/system/ossystem/helper.php</file>
+            <file>/plugins/system/ossystem/library/Helper.php</file>
         </obsolete>
     </alledia>
 </extension>
